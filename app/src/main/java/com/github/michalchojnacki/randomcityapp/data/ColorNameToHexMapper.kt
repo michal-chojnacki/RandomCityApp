@@ -1,6 +1,8 @@
 package com.github.michalchojnacki.randomcityapp.data
 
-internal class ColorNameToHexMapper {
+import javax.inject.Inject
+
+internal class ColorNameToHexMapper @Inject constructor() {
 
     fun map(colorName: String): String = when (colorName) {
         "Yellow" -> "#FFFF00"
