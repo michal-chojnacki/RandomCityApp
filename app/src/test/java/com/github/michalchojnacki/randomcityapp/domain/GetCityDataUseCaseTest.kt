@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.junit.Test
 
 class GetCityDataUseCaseTest {
+
     private val cityDataRepository: CityDataRepository = mock()
 
     private val tested = GetCityDataUseCase(cityDataRepository)
