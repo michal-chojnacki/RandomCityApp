@@ -10,9 +10,13 @@ import com.github.michalchojnacki.randomcityapp.R
 import com.github.michalchojnacki.randomcityapp.databinding.CityDataListFragmentBinding
 import com.github.michalchojnacki.randomcityapp.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CityDataListFragment : BaseFragment() {
+
+    @Inject
+    lateinit var cityDataListNavigator: CityDataListNavigator
 
     override val toolbarTitle: String?
         get() = getString(R.string.app_name)
@@ -28,6 +32,7 @@ class CityDataListFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         lifecycle.addObserver(cityDataListViewModel)
+        cityDataListNavigator.observe(cityDataListViewModel)
         return CityDataListFragmentBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = cityDataListViewModel

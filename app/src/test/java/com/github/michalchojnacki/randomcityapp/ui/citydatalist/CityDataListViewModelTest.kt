@@ -3,6 +3,7 @@ package com.github.michalchojnacki.randomcityapp.ui.citydatalist
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.michalchojnacki.randomcityapp.domain.GetCityDataUseCase
 import com.github.michalchojnacki.randomcityapp.domain.model.CityData
+import com.github.michalchojnacki.randomcityapp.ui.common.Event
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Observable
@@ -18,10 +19,9 @@ class CityDataListViewModelTest {
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
 
-    private val cityDataListNavigator: CityDataListNavigator = mock()
     private val getCityDataUseCase: GetCityDataUseCase = mock()
 
-    private val tested = CityDataListViewModel(cityDataListNavigator, getCityDataUseCase)
+    private val tested = CityDataListViewModel(getCityDataUseCase)
 
     @Before
     fun setUp() = RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
@@ -128,7 +128,7 @@ class CityDataListViewModelTest {
     }
 
     @Test
-    fun `given cityData when onCityDataSelected is invoked then navigateToCityDataDetails is executed`() {
+    fun `given cityData when onCityDataSelected is invoked then navigateToCityDataDetails event is posted`() {
         // given
         val cityData = CityData("city_name_1", "color_hex_1", 0)
 
@@ -136,6 +136,6 @@ class CityDataListViewModelTest {
         tested.onCityDataSelected(cityData)
 
         // then
-        verify(cityDataListNavigator).navigateToCityDataDetails(cityData)
+        assertEquals(Event(cityData), tested.navigateToCityDataDetails.value)
     }
 }

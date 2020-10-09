@@ -4,18 +4,21 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.github.michalchojnacki.randomcityapp.domain.GetCityDataUseCase
 import com.github.michalchojnacki.randomcityapp.domain.model.CityData
+import com.github.michalchojnacki.randomcityapp.ui.common.Event
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 
 class CityDataListViewModel @ViewModelInject constructor(
-    private val cityDataListNavigator: CityDataListNavigator,
     private val getCityDataListUseCase: GetCityDataUseCase
-) : ViewModel(), LifecycleObserver {
+) : ViewModel(), LifecycleObserver, CityDataListEventPublisher {
 
     val cityDataList: LiveData<List<CityData>> get() = _cityDataList
+    override val navigateToCityDataDetails: LiveData<Event<CityData>> get() = _navigateToCityDataDetails
     val onCityDataSelected =
-        { cityData: CityData -> cityDataListNavigator.navigateToCityDataDetails(cityData) }
+        { cityData: CityData -> _navigateToCityDataDetails.value = Event(cityData) }
+
     private val _cityDataList = MutableLiveData<List<CityData>>(emptyList())
+    private val _navigateToCityDataDetails = MutableLiveData<Event<CityData>>()
     private var getCityDataListDisposable: Disposable? = null
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
