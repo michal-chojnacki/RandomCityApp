@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.michalchojnacki.randomcityapp.databinding.CityDataDetailsFragmentBinding;
 import com.github.michalchojnacki.randomcityapp.domain.model.CityData;
+import com.github.michalchojnacki.randomcityapp.ui.common.ActivityExts;
 import com.github.michalchojnacki.randomcityapp.ui.common.BaseFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -46,7 +47,10 @@ public class CityDataDetailsFragment extends BaseFragment {
 
     @Override
     public boolean getDisplayHomeAsUpEnabled() {
-        return true;
+        if (getActivity() == null) {
+            return true;
+        }
+        return !ActivityExts.getTwoPane(getActivity());
     }
 
     @Nullable
