@@ -1,3 +1,7 @@
 package com.github.michalchojnacki.randomcityapp.domain.model
 
-data class CityData(val cityName: String, val colorHex: String, val emissionTimeInMillis: Long)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class CityData(val cityName: String, val colorHex: String, val emissionTimeInMillis: Long) : Parcelable
