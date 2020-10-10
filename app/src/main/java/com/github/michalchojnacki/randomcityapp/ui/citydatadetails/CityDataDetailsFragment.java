@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.github.michalchojnacki.randomcityapp.R;
 import com.github.michalchojnacki.randomcityapp.databinding.CityDataDetailsFragmentBinding;
 import com.github.michalchojnacki.randomcityapp.domain.model.CityData;
-import com.github.michalchojnacki.randomcityapp.ui.common.ActivityExts;
+import com.github.michalchojnacki.randomcityapp.ui.common.AppHelpers;
 import com.github.michalchojnacki.randomcityapp.ui.common.BaseFragment;
 import com.google.android.libraries.maps.CameraUpdateFactory;
 import com.google.android.libraries.maps.GoogleMap;
@@ -75,7 +75,7 @@ public class CityDataDetailsFragment extends BaseFragment implements OnMapReadyC
         if (getActivity() == null) {
             return true;
         }
-        return !ActivityExts.getTwoPane(getActivity());
+        return !AppHelpers.getTwoPane(getActivity());
     }
 
     @Nullable

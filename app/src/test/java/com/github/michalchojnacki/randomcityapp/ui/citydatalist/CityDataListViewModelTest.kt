@@ -7,6 +7,7 @@ import com.github.michalchojnacki.randomcityapp.ui.common.Event
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.Schedulers
 import junit.framework.TestCase.*
 import org.junit.Before
@@ -21,10 +22,13 @@ class CityDataListViewModelTest {
 
     private val getCityDataUseCase: GetCityDataUseCase = mock()
 
-    private val tested = CityDataListViewModel(getCityDataUseCase)
+    private val tested = CityDataListViewModel(emptyList(), getCityDataUseCase)
 
     @Before
-    fun setUp() = RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+    fun setUp() {
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
+    }
 
     @Test
     fun `when tested is not started then getCityDataUseCase is not executed`() {

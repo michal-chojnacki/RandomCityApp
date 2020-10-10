@@ -4,7 +4,7 @@ import android.view.View
 import androidx.fragment.app.FragmentActivity
 import com.github.michalchojnacki.randomcityapp.R
 
-object ActivityExts {
+object AppHelpers {
 
     @JvmStatic
     val FragmentActivity.twoPane: Boolean

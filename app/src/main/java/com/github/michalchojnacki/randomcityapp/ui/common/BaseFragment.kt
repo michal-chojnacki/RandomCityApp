@@ -4,8 +4,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.github.michalchojnacki.randomcityapp.ui.utils.supportActionBar
 
 abstract class BaseFragment : Fragment() {
     open val toolbarTitle: String? = null
@@ -16,7 +16,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.let { it as? AppCompatActivity }?.supportActionBar?.apply {
+        activity?.supportActionBar?.apply {
             toolbarTitle?.let { title = it }
             toolbarColor?.let { setBackgroundDrawable(ColorDrawable(it)) }
             setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled)

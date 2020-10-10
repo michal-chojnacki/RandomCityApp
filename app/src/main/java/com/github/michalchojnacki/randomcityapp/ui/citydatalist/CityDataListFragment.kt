@@ -8,12 +8,21 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import com.github.michalchojnacki.randomcityapp.R
 import com.github.michalchojnacki.randomcityapp.databinding.CityDataListFragmentBinding
+import com.github.michalchojnacki.randomcityapp.domain.model.CityData
 import com.github.michalchojnacki.randomcityapp.ui.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class CityDataListFragment : BaseFragment() {
+
+    companion object {
+        fun newInstance(initialData: List<CityData>) = CityDataListFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList(ARG_INITIAL_DATA, ArrayList(initialData))
+            }
+        }
+    }
 
     @Inject
     lateinit var cityDataListNavigator: CityDataListNavigator

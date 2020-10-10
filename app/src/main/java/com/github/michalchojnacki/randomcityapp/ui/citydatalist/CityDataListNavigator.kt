@@ -5,7 +5,7 @@ import androidx.fragment.app.commit
 import com.github.michalchojnacki.randomcityapp.R
 import com.github.michalchojnacki.randomcityapp.domain.model.CityData
 import com.github.michalchojnacki.randomcityapp.ui.citydatadetails.CityDataDetailsFragment
-import com.github.michalchojnacki.randomcityapp.ui.common.ActivityExts.twoPane
+import com.github.michalchojnacki.randomcityapp.ui.common.AppHelpers.twoPane
 import com.github.michalchojnacki.randomcityapp.ui.common.EventObserver
 import javax.inject.Inject
 
