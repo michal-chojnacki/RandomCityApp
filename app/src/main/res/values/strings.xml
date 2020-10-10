@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RandomCityApp</string>
+    <string name="problem_loading_city_localization_occurred">Problem loading city localization occurred! Please check your internet connection</string>
 </resources>
