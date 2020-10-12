@@ -5,5 +5,5 @@ import io.reactivex.rxjava3.core.Observable
 
 interface CityDataRepository {
 
-    fun getCityDatas() : Observable<CityData>
+    fun getCityDatas(): Observable<CityData>
 }
